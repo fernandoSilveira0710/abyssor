@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/objects/Carrinho.gd" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="mat_azul"]
+albedo_color = Color(0.3, 0.5, 1.0, 1.0)
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(1, 0.5, 2)
+
+[node name="Carrinho" type="RigidBody3D"]
+script = ExtResource("1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+material_override = SubResource("mat_azul")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("2")

@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/enemy/Monstro.gd" id="1"]
+
+[sub_resource type="CapsuleMesh" id="1"]
+
+[sub_resource type="CapsuleShape3D" id="2"]
+
+[sub_resource type="StandardMaterial3D" id="mat_vermelho"]
+albedo_color = Color(1, 0.1, 0.1, 1.0)
+
+[node name="MonstroBase" type="CharacterBody3D"]
+script = ExtResource("1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+material_override = SubResource("mat_vermelho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("2")

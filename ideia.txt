@@ -1,0 +1,162 @@
+🕳️ Conceito
+Abyssor é um jogo cooperativo 3D de terror onde até quatro jogadores exploradores enfrentam as profundezas de uma mina viva e mutável. Cada fase é gerada por seed procedural, trazendo novos caminhos, criaturas adaptativas e decisões estratégicas que desafiam a sobrevivência e o trabalho em equipe.
+
+⚙️ Mecânica Central
+Os jogadores devem empurrar manualmente um carrinho sobre trilhos enquanto exploram corredores escuros em busca de loot, peças e suprimentos. O carrinho serve como suporte e fardo: quanto mais cheio, mais lento e barulhento — atraindo criaturas que reagem ao som, luz e comportamento.
+
+🔁 Loop de Gameplay
+O time desce por um andar da mina.
+
+Enfrenta criaturas com IA adaptativa.
+
+Escolhe rotas (fácil, média, difícil) em bifurcações com base em placas e luzes.
+
+Luta ou evita o perigo enquanto coleta loot.
+
+Empurra o carrinho até a Sala Segura no final da fase.
+
+Lá, revive aliados, salva recursos no baú e vota na próxima porta.
+
+No andar final, utiliza as peças reunidas para consertar o elevador e subir — ou fica preso para sempre.
+
+👥 Diferenciais dos Personagens
+Cada jogador escolhe um explorador com personalidade e habilidades únicas que afetam o gameplay. Um corre mais rápido com medo, outro conserta máquinas com eficiência, outro enxerga alucinações... ou ignora todas. A cooperação e o equilíbrio dessas funções são vitais para sobreviver.
+
+🧠 IA e Criaturas
+Os monstros observam o comportamento do grupo. Se o time corre muito, aparecem predadores velozes. Se ficam em silêncio, surgem entidades que se alimentam de medo. Alguns atacam o carrinho. Outros se camuflam entre os jogadores.
+
+🎯 Decisões Importam
+Lootar demais pode condenar o time. Abandonar aliados pode acelerar a progressão… mas a culpa fica. Escolher a rota errada pode custar a run. O jogo recompensa cooperação verdadeira, mas não impede egoísmo — a tensão moral é constante.
+
+🌌 Ambiente e Atmosfera
+Cada andar da mina possui seu próprio bioma, clima e sons únicos. A névoa, o silêncio e a iluminação limitada criam uma sensação constante de ameaça. Você nunca sabe o que virá após a próxima curva… só que vai piorar.
+
+🧩 Motivação Final
+Os jogadores não estão descendo em busca de fuga. Eles estão sendo levados. Cada fase revela fragmentos da verdade: o que é Abyssor? Por que a mina muda? Quem realmente está sendo resgatado no elevador final?
+
+🗣️ Frases de marketing
+“A escuridão não é o pior inimigo. É a decisão errada do seu amigo.”
+
+“Você desce por escolha. Você sobe, se der sorte.”
+
+“Toda mina esconde algo. Essa esconde tudo.”
+
+📁 ESTRUTURA DO PROJETO (MÓDULOS)
+🔹 1. Core
+GameManager.gd (controle geral da partida)
+
+SeedManager.gd (gerador procedural por seed)
+
+SaveManager.gd (persistência de itens e jogadores)
+
+🔹 2. Gameplay
+Player.gd (movimento, interação, inventário)
+
+Carrinho.gd (movimento em trilho, peso, interação)
+
+Monstro.gd (base + IA adaptativa)
+
+Item.gd (pickup, tipo, peso)
+
+🔹 3. Fases
+SalaSegura.tscn + SalaSegura.gd
+
+PortaEscolha.gd (rota fácil, média, difícil)
+
+NivelProcedural.gd (gerador de andares)
+
+Elevador.gd (reviver jogadores, final do jogo)
+
+🔹 4. Multiplayer
+NetworkManager.gd (host/join partida)
+
+SyncManager.gd (sincronização de jogadores, carrinho e monstros)
+
+PlayerGhost.gd (replicação do jogador remoto)
+
+🔹 5. UI
+HUD.tscn (vida, stamina, peso)
+
+SafeRoomUI.tscn (baú, votação de rota)
+
+Inventario.tscn
+
+TelaInicial.tscn / MenuPausa.tscn
+
+🧭 ROTEIRO DE DESENVOLVIMENTO POR ETAPAS
+🔥 Fase 1: Protótipo Base (Singleplayer Offline)
+Objetivo: sistema de movimentação, seed procedural e gameplay loop básico
+
+ Player 3D com movimentação, interação (Area3D)
+
+ Carrinho que se move no trilho e responde ao peso
+
+ Sistema de geração de mapa por seed (com bifurcação)
+
+ Inventário simples com peso e drop
+
+ Sistema de monstro com patrulha e IA reativa básica
+
+ Criação da Sala Segura com escolha de próxima fase
+
+⚙️ Fase 2: Lógica de Loop e Progressão
+Objetivo: fazer o jogo rodar de fase em fase com persistência
+
+ Sistema de baú persistente na Sala Segura
+
+ Reviver jogadores com peças ou energia
+
+ Votação de porta para a próxima fase
+
+ Transição entre fases com carregamento
+
+ Final do jogo com elevador de resgate
+
+🌐 Fase 3: Multiplayer
+Objetivo: jogar em 2 a 4 players com sincronia básica
+
+ Lobby (host / join)
+
+ Spawns sincronizados
+
+ Carrinho sincronizado
+
+ Loot sincronizado
+
+ Monstro com comportamento comum para todos
+
+👹 Fase 4: IA Avançada + Variedade
+Objetivo: criar tensão e variedade real de gameplay
+
+ IA que aprende padrões do jogador
+
+ Tipos diferentes de monstros com comportamento único
+
+ Eventos randômicos (quedas, sustos, apagões, rádios)
+
+ Reforço no procedural (mais módulos de mapa, caminhos, eventos)
+
+🎨 Fase 5: Polimento e Interface
+Objetivo: deixar jogável, apresentável e pronto pra testes
+
+ HUD funcional e limpa
+
+ Menus e tela de vitória/derrota
+
+ Animações simples (portas, monstros, elevador)
+
+ Sons básicos (passos, sustos, música ambiente)
+
+ Exportação do jogo
+
+💼 NOMES TEMPORÁRIOS DE ARQUIVOS/SCENES
+bash
+Copiar
+Editar
+/scenes
+  /player/Player.tscn
+  /enemy/MonstroBase.tscn
+  /objects/Carrinho.tscn
+  /rooms/SalaSegura.tscn
+  /rooms/NivelProcedural.tscn
+  /ui/HUD.tscn

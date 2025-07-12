@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/objects/Item.gd" id="1"]
+
+[sub_resource type="SphereMesh" id="mesh_sphere"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="mat_amarelo"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="shape_sphere"]
+radius = 0.2
+
+[node name="Item" type="RigidBody3D"]
+script = ExtResource("1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_amarelo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("shape_sphere") 

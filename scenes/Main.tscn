@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://dg13s4edp8u1g"]
+
+[ext_resource type="PackedScene" uid="uid://bbp4skyif8jh5" path="res://scenes/player/Player.tscn" id="1_elqb8"]
+[ext_resource type="PackedScene" path="res://scenes/objects/Carrinho.tscn" id="2_carrinho"]
+[ext_resource type="PackedScene" path="res://scenes/enemy/MonstroBase.tscn" id="3_monstro"]
+[ext_resource type="PackedScene" path="res://scenes/rooms/SalaSegura.tscn" id="4_sala"]
+[ext_resource type="PackedScene" path="res://scenes/rooms/NivelProcedural.tscn" id="5_nivel"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="6_hud"]
+[ext_resource type="PackedScene" path="res://scenes/objects/Item.tscn" id="7_item"]
+
+[sub_resource type="Environment" id="env_amb"]
+background_mode = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_uh821"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uh821"]
+size = Vector3(20, 1, 20)
+
+[node name="Main" type="Node3D"]
+
+[node name="Main#WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env_amb")
+
+[node name="Chao" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Chao"]
+mesh = SubResource("BoxMesh_uh821")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chao"]
+shape = SubResource("BoxShape3D_uh821")
+
+[node name="Player" parent="." instance=ExtResource("1_elqb8")]
+transform = Transform3D(0.949677, 0, 0.31323, 0, 1, 0, -0.31323, 0, 0.949677, 1.74829, 1.56945, 4.20835)
+
+[node name="Carrinho" parent="." instance=ExtResource("2_carrinho")]
+transform = Transform3D(1, 0, 0, 0, 0.999178, 0.0405503, 0, -0.0405503, 0.999178, 2.06979, 0.800539, 0.313664)
+
+[node name="MonstroBase" parent="." instance=ExtResource("3_monstro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.109, 1.54771, -0.72322)
+
+[node name="SalaSegura" parent="." instance=ExtResource("4_sala")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+
+[node name="NivelProcedural" parent="." instance=ExtResource("5_nivel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="HUD" parent="." instance=ExtResource("6_hud")]
+
+[node name="Item1" parent="." instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 2)
+
+[node name="Item2" parent="." instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -2)
+
+[node name="Item3" parent="." instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
